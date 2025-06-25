@@ -489,6 +489,157 @@ const SAVED_LOG_QUERIES_CONFIG = {
       ],
     },
   },
+  'crm-scaler-sales-web': {
+    queryId: 24959,
+    resultLayout: {
+      sections: [
+        {
+          title: 'Request Details',
+          columns: [
+            {
+              items: [
+                {
+                  name: 'uuid',
+                  label: 'Log UUID',
+                  type: QUERY_FIELD_TYPES.string,
+                },
+                {
+                  name: 'timestamp',
+                  label: 'Timestamp',
+                  type: QUERY_FIELD_TYPES.datetime,
+                },
+                {
+                  name: 'ip_address',
+                  label: 'IP Address',
+                  type: QUERY_FIELD_TYPES.string,
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  name: 'request_type',
+                  label: 'Request Method',
+                  type: QUERY_FIELD_TYPES.string,
+                },
+                {
+                  name: 'endpoint',
+                  label: 'API Endpoint',
+                  type: QUERY_FIELD_TYPES.string,
+                },
+                {
+                  name: 'server_ip',
+                  label: 'Server IP',
+                  type: QUERY_FIELD_TYPES.string,
+                },
+                {
+                  name: 'status_code',
+                  label: 'Status Code',
+                  type: QUERY_FIELD_TYPES.string,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: 'Request Payload',
+          columns: [
+            {
+              items: [
+                {
+                  name: 'params',
+                  label: 'Request Params',
+                  type: QUERY_FIELD_TYPES.rubyHash,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: 'Complete Log',
+          columns: [
+            {
+              items: [
+                {
+                  name: 'lines',
+                  label: 'Request logs',
+                  type: QUERY_FIELD_TYPES.logs,
+                },
+              ],
+            },
+          ],
+        },
+      ]
+    }
+  },
+  'crm-scaler-sales-non-web': {
+    queryId: 24960,
+    resultLayout: {
+      sections: [
+        {
+          title: 'Job Details',
+          columns: [
+            {
+              items: [
+                {
+                  name: 'job_id',
+                  label: 'Job ID',
+                  type: QUERY_FIELD_TYPES.string,
+                },
+                {
+                  name: 'timestamp',
+                  label: 'Timestamp',
+                  type: QUERY_FIELD_TYPES.datetime,
+                },
+              ],
+            },
+            {
+              items: [
+                {
+                  label: 'Job Name',
+                  name: 'name',
+                  type: QUERY_FIELD_TYPES.string,
+                },
+                {
+                  label: 'Queue',
+                  name: 'queue',
+                  type: QUERY_FIELD_TYPES.string,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: 'Job Arguments',
+          columns: [
+            {
+              items: [
+                {
+                  name: 'args',
+                  label: 'Arguments',
+                  type: QUERY_FIELD_TYPES.rubyHash,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: 'Complete Log',
+          columns: [
+            {
+              items: [
+                {
+                  name: 'lines',
+                  label: 'Request logs',
+                  type: QUERY_FIELD_TYPES.logs,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    }
+  }
 };
 
 export default SAVED_LOG_QUERIES_CONFIG;
