@@ -1,0 +1,63 @@
+{
+  "name": "logs-explorer",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^7.1.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@vectord/components": "^1.0.1",
+    "@vectord/icons": "^1.0.1",
+    "@vectord/styles": "^1.0.1",
+    "@vectord/utils": "0.0.8",
+    "axios": "^1.4.0",
+    "classnames": "^2.3.2",
+    "cogo-toast": "^4.2.3",
+    "eslint-plugin-react": "^7.37.5",
+    "http-proxy-middleware": "^2.0.6",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-lazylog": "^4.5.3",
+    "react-router-dom": "^6.4.3",
+    "react-scripts": "^5.0.1",
+    "recoil": "^0.7.7",
+    "sass": "^1.63.6",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "start:dev": "env-cmd -f .env.development craco start",
+    "build:production": "env-cmd -f .env.production craco build",
+    "build:staging": "env-cmd -f .env.staging craco build",
+    "lint": "prettier --check src/",
+    "format": "prettier --write src/"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "prettier"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.0"
+  }
+}
