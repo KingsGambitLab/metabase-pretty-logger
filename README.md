@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+# Logs Explorer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based web application for exploring and viewing logs with beautiful formatting through Metabase integration.
+
+## Features
+
+- **Pretty Log Viewing**: Enhanced log display with syntax highlighting and formatting
+- **Metabase Integration**: Seamless connection to Metabase for log queries
+- **Multiple Field Renderers**: Support for various data types including:
+  - DateTime fields with formatting
+  - Log entries with syntax highlighting  
+  - Ruby hash objects with structured display
+  - String fields with enhanced readability
+- **Saved Queries**: Execute and manage saved log queries
+- **Responsive Design**: Columned layout that adapts to different screen sizes
+- **Session Management**: Secure Metabase authentication and session handling
+
+## Tech Stack
+
+- **Frontend**: React 18 with Create React App
+- **State Management**: Recoil
+- **Styling**: SASS modules with @vectord component library
+- **Build Tool**: CRACO for customized configuration
+- **API Integration**: Axios for Metabase API calls
+- **Routing**: React Router DOM
+
+## Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up environment files (`.env.development`, `.env.staging`, `.env.production`)
+4. Configure Metabase connection settings
 
 ## Available Scripts
 
-In the project directory, you can run:
+### Development
+```bash
+npm run start:dev
+```
+Runs the app in development mode using the development environment configuration.
 
-### `npm start`
+### Production Build
+```bash
+npm run build:production
+```
+Creates a production build optimized for deployment.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Staging Build
+```bash
+npm run build:staging
+```
+Creates a staging build for testing purposes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Code Quality
+```bash
+npm run lint        # Check code formatting
+npm run format      # Auto-format code with Prettier
+```
 
-### `npm test`
+## Project Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+src/
+├── api/metabase/          # Metabase API integration
+├── atoms/                 # Recoil state atoms
+├── components/            # Reusable React components
+│   ├── ErrorLayout/
+│   ├── Field/
+│   ├── Form/
+│   ├── Input/
+│   ├── Loader/
+│   ├── LogViewer/
+│   └── MetabaseLoginModal/
+├── data/                  # Configuration and constants
+├── hoc/                   # Higher-order components
+├── hooks/                 # Custom React hooks
+├── pages/                 # Application pages
+│   ├── NotFoundPage/
+│   └── PrettyLogsPage/
+└── utils/                 # Utility functions
+```
 
-### `npm run build`
+## Configuration
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The application uses environment-specific configuration files:
+- `.env.development` - Development settings
+- `.env.staging` - Staging environment settings  
+- `.env.production` - Production environment settings
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Deployment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Production Deployment Steps
 
-### `npm run eject`
+1. Create `.env.production` file with the following configuration:
+   ```
+   PORT=6002
+   REACT_APP_METABASE_API_BASE=https://metabase.interviewbit.com/api
+   REACT_APP_FRONTEND_BASE_PATH=/dev-logs/
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Build the production version:
+   ```bash
+   PUBLIC_URL=/dev-logs npm run build:production
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Deploy to AWS S3:
+   - Go to S3 bucket `metabase-pretty-logger` on MITProduction AWS
+   - Upload `/build/index.html` to the root of the S3 bucket
+   - Upload all other content from `/build` directory into the `/dev-logs` directory of the S3 bucket
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contributing
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Follow the existing code style and conventions
+2. Use Prettier for code formatting
+3. Ensure all linting checks pass before committing
+4. Test thoroughly across different log formats and data types
