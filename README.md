@@ -117,3 +117,13 @@ The application uses environment-specific configuration files:
 2. Use Prettier for code formatting
 3. Ensure all linting checks pass before committing
 4. Test thoroughly across different log formats and data types
+
+## Usage
+1. scaler-prod-web: https://metabase.interviewbit.com/dev-logs/pretty/scaler-web/:uuid
+2. scaler-prod-web-admin: https://metabase.interviewbit.com/dev-logs/pretty/scaler-web-admin/:uuid
+3. scaler-prod-nonweb: https://metabase.interviewbit.com/dev-logs/pretty/scaler-non-web/:job_id
+4. interviewbit-prod-web: https://metabase.interviewbit.com/dev-logs/pretty/ib-web/:uuid
+5. interviewbit-prod-nonweb: https://metabase.interviewbit.com/dev-logs/pretty/ib-non-web/:job_id
+6. ib-puma-1: https://metabase.interviewbit.com/dev-logs/pretty/ib-puma-1/:uuid
+7. crm-scaler-sales-web: https://metabase.interviewbit.com/dev-logs/pretty/crm-scaler-sales-web/:uuid
+8. crm-scaler-sales-non-web: https://metabase.interviewbit.com/dev-logs/pretty/crm-scaler-sales-non-web/:job_id
