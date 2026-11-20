@@ -6,6 +6,14 @@ import Loader from 'components/Loader';
 import metabaseSessionState from 'atoms/metabaseSessionState';
 import metabaseApi from 'api/metabase';
 
+// Where the user signs in: the host of the Metabase API this build talks to.
+// An absolute base (local dev) names its own host; the relative production
+// base ("/api") resolves to the page's host, which serves Metabase.
+function getMetabaseSignInHost() {
+  const apiBase = process.env.REACT_APP_METABASE_API_BASE || '/api';
+  return new URL(apiBase, window.location.origin).host;
+}
+
 function withMetabaseLogin(BaseComponent) {
   return function WithMetabaseLogin(props) {
     const [{ isLoggedIn }, setMetabaseSessionState] =
@@ -35,7 +43,7 @@ function withMetabaseLogin(BaseComponent) {
       return (
         <ErrorLayout
           title="Not Authenticated!"
-          message="Please sign in to Metabase at metabase.scaler.com in another tab, then reload this page"
+          message={`Please sign in to Metabase at ${getMetabaseSignInHost()} in another tab, then reload this page`}
         />
       );
     } else {
