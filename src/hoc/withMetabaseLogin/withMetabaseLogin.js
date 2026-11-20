@@ -35,7 +35,7 @@ function withMetabaseLogin(BaseComponent) {
       return (
         <ErrorLayout
           title="Not Authenticated!"
-          message="Please login to metabase to continue"
+          message="Please sign in to Metabase at metabase.scaler.com in another tab, then reload this page"
         />
       );
     } else {
