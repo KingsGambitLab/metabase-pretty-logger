@@ -569,8 +569,8 @@ const SAVED_LOG_QUERIES_CONFIG = {
             },
           ],
         },
-      ]
-    }
+      ],
+    },
   },
   'crm-scaler-sales-non-web': {
     queryId: 24960,
@@ -638,8 +638,8 @@ const SAVED_LOG_QUERIES_CONFIG = {
           ],
         },
       ],
-    }
-  }
+    },
+  },
 };
 
 export default SAVED_LOG_QUERIES_CONFIG;
