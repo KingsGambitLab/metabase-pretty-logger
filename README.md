@@ -94,12 +94,16 @@ The application uses environment-specific configuration files:
 
 ### Production Deployment Steps
 
-1. Create `.env.production` file with the following configuration:
+1. `.env.production` is committed with the production configuration:
    ```
    PORT=6002
-   REACT_APP_METABASE_API_BASE=https://metabase.interviewbit.com/api
+   REACT_APP_METABASE_API_BASE=/api
    REACT_APP_FRONTEND_BASE_PATH=/dev-logs/
    ```
+   The API base is relative on purpose: the app is served under `/dev-logs/` on the
+   same host as Metabase (`metabase.scaler.com`), so `/api` reaches that host's
+   Metabase and the browser sends the Metabase login cookie for it. Do not point it
+   at another hostname; the login cookie is only sent to the host that set it.
 
 2. Build the production version:
    ```bash
@@ -110,6 +114,8 @@ The application uses environment-specific configuration files:
    - Go to S3 bucket `metabase-pretty-logger` on MITProduction AWS
    - Upload `/build/index.html` to the root of the S3 bucket
    - Upload all other content from `/build` directory into the `/dev-logs` directory of the S3 bucket
+   - Invalidate the CloudFront cache for `/dev-logs/*` on the `metabase.scaler.com` distribution,
+     otherwise the old `index.html` keeps being served from cache
 
 ## Contributing
 
@@ -119,11 +125,11 @@ The application uses environment-specific configuration files:
 4. Test thoroughly across different log formats and data types
 
 ## Usage
-1. scaler-prod-web: https://metabase.interviewbit.com/dev-logs/pretty/scaler-web/:uuid
-2. scaler-prod-web-admin: https://metabase.interviewbit.com/dev-logs/pretty/scaler-web-admin/:uuid
-3. scaler-prod-nonweb: https://metabase.interviewbit.com/dev-logs/pretty/scaler-non-web/:job_id
-4. interviewbit-prod-web: https://metabase.interviewbit.com/dev-logs/pretty/ib-web/:uuid
-5. interviewbit-prod-nonweb: https://metabase.interviewbit.com/dev-logs/pretty/ib-non-web/:job_id
-6. ib-puma-1: https://metabase.interviewbit.com/dev-logs/pretty/ib-puma-1/:uuid
-7. crm-scaler-sales-web: https://metabase.interviewbit.com/dev-logs/pretty/crm-scaler-sales-web/:uuid
-8. crm-scaler-sales-non-web: https://metabase.interviewbit.com/dev-logs/pretty/crm-scaler-sales-non-web/:job_id
+1. scaler-prod-web: https://metabase.scaler.com/dev-logs/pretty/scaler-web/:uuid
+2. scaler-prod-web-admin: https://metabase.scaler.com/dev-logs/pretty/scaler-web-admin/:uuid
+3. scaler-prod-nonweb: https://metabase.scaler.com/dev-logs/pretty/scaler-non-web/:job_id
+4. interviewbit-prod-web: https://metabase.scaler.com/dev-logs/pretty/ib-web/:uuid
+5. interviewbit-prod-nonweb: https://metabase.scaler.com/dev-logs/pretty/ib-non-web/:job_id
+6. ib-puma-1: https://metabase.scaler.com/dev-logs/pretty/ib-puma-1/:uuid
+7. crm-scaler-sales-web: https://metabase.scaler.com/dev-logs/pretty/crm-scaler-sales-web/:uuid
+8. crm-scaler-sales-non-web: https://metabase.scaler.com/dev-logs/pretty/crm-scaler-sales-non-web/:job_id
